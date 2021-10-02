@@ -90,7 +90,7 @@ export const download_search_video = async ({
         // console.log("Redirect from", url, "to", dest);
         try {
           createIfNotExistDir(downloadDestination);
-          const fileName = /(?<=filename=)(.*?)(?=\&source)/
+          const fileName = /(?<=filename=)(.*?)($|(?=\&source))/
             .exec(destUrl)[0]
             .replace(/\+/g, "")
             .replace(/\.vid/g, ".mp4");
@@ -102,7 +102,9 @@ export const download_search_video = async ({
           });
         } catch (e) {
           console.log(
-            S.FgRed + `[!] Không tìm được link tải của ${url}` + S.Reset
+            S.FgRed +
+              `[!] Không tìm được link tải của ${url}\nLỗi ${e.toString()}` +
+              S.Reset
           );
         }
       }

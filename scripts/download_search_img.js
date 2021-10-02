@@ -75,14 +75,11 @@ export const download_search_img = async ({
             url: destUrl,
             pathToSave: filePath,
           });
-
-          // download(destUrl, filePath).then(() => {
-          //   console.log(`> Saved ${saved}: ${filePath}`);
-          //   saved++;
-          // });
         } catch (e) {
           console.log(
-            S.FgRed + `[!] Không tìm được link tải của ${url}` + S.Reset
+            S.FgRed +
+              `[!] Không tìm được link tải của ${url}\nLỗi ${e.toString()}` +
+              S.Reset
           );
         }
       }

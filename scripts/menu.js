@@ -67,7 +67,7 @@ export const menu = async () => {
 
       if (action.key == 2) {
         const quality = await prompt(
-          "> Chọn chất lượng video (0-Gốc, 1-Vừa, 2-Nhỏ, 3-Nhỏ nhất): "
+          "> Chọn chất lượng video (0-Gốc, 1-Vừa, 2-Nhỏ, 3-Nhỏ nhất) (kích thước cụ thể thì tùy video): "
         );
         const ignoreLicense = await prompt(
           "> Có tải video bản quyền không (0-Không, 1-Có): "

@@ -32,22 +32,6 @@ export const download_search_video = async ({
       (vars) => {
         const data = [];
 
-        // Get all imgs/vectors/illutrations
-        const img_items = Array.from(
-          document.querySelectorAll(".search-results div.item")
-        );
-        const img_srcs = img_items.map((_) =>
-          _.querySelector("meta[itemprop='contentUrl']").getAttribute("content")
-        );
-        data.push(
-          ...img_srcs.map((_) => {
-            const key = _.slice(_.lastIndexOf("/") + 1, _.indexOf("__"));
-            const type = _.slice(_.lastIndexOf(".")); // jpg, png
-            const url = `https://pixabay.com/vi/images/download/${key}.jpg`;
-            return { key, type, url };
-          })
-        );
-
         // Get all videos
         let video_items = Array.from(
           document.querySelectorAll(".video-search-results div.item")
@@ -69,7 +53,7 @@ export const download_search_video = async ({
           ...video_items.map((_) => {
             const href = _.querySelector("a").href;
             const key = href.slice(href.lastIndexOf("-") + 1, href.length - 1);
-            const url = `https://pixabay.com/vi/videos/download/video-${key}_${quality}.mp4`; //_.querySelector("div.media").getAttribute("data-mp4");
+            const url = `https://pixabay.com/vi/videos/download/video-${key}_${vars.quality}.mp4`; //_.querySelector("div.media").getAttribute("data-mp4");
             const type = "mp4";
             return { key, type, url };
           })
@@ -77,7 +61,7 @@ export const download_search_video = async ({
 
         return data;
       },
-      { checkLicense }
+      { checkLicense, quality }
     );
 
     console.log(`> Tìm thấy ${video_data.length} video. Đang xử lý...`);

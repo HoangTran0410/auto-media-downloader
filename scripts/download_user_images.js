@@ -1,6 +1,6 @@
-const fs = require("fs");
-const puppeteer = require("puppeteer");
-const { download } = require("./utils");
+import { promises } from "fs";
+import puppeteer from "puppeteer";
+import { download } from "./utils";
 
 const download_user_images = async ({ urlToFetch, pageLimit }) => {
   const browser = await puppeteer.launch({ headless: false });
@@ -8,7 +8,7 @@ const download_user_images = async ({ urlToFetch, pageLimit }) => {
   await page.setViewport({ width: 500, height: 500 });
 
   // https://stackoverflow.com/a/56515357
-  const cookiesString = await fs.promises.readFile("./cookies.json");
+  const cookiesString = await promises.readFile("./cookies.json");
   const cookies = JSON.parse(cookiesString);
   await page.setCookie(...cookies);
 
@@ -89,6 +89,6 @@ const download_user_images = async ({ urlToFetch, pageLimit }) => {
   console.log("FINISHED");
 };
 
-module.exports = {
+export default {
   download_user_images,
 };

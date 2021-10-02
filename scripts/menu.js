@@ -1,4 +1,5 @@
 import { createInterface } from "readline";
+import { VIDEO_QUALITY } from "./constants.js";
 import { download_search_img } from "./download_search_img.js";
 import { download_search_video } from "./download_search_video.js";
 import { S } from "./utils.js";
@@ -65,14 +66,24 @@ export const menu = async () => {
       }
 
       if (action.key == 2) {
+        const quality = await prompt(
+          "> Chọn chất lượng video (0-Gốc, 1-Vừa, 2-Nhỏ, 3-Nhỏ nhất): "
+        );
         const ignoreLicense = await prompt(
           "> Có tải video bản quyền không (0-Không, 1-Có): "
         );
+        const qualities = [
+          VIDEO_QUALITY.SOURCE,
+          VIDEO_QUALITY.MEDIUM,
+          VIDEO_QUALITY.SMALL,
+          VIDEO_QUALITY.TINY,
+        ];
         await download_search_video({
           urlToFetch: url,
           pageLimit: pageLimit,
           checkLicense: ignoreLicense == 1 ? false : true,
           downloadDestination: "./downloads/videos/" + folderToSave + "/",
+          quality: qualities[quality],
         });
       }
     }

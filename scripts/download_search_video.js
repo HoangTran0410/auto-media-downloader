@@ -1,5 +1,6 @@
 import { promises as _promises } from "fs";
 import puppeteer from "puppeteer";
+import { VIDEO_QUALITY } from "./constants.js";
 import { createIfNotExistDir, download, S } from "./utils.js";
 
 export const download_search_video = async ({
@@ -7,6 +8,7 @@ export const download_search_video = async ({
   pageLimit,
   checkLicense = false,
   downloadDestination = "./downloads/",
+  quality = VIDEO_QUALITY.SOURCE,
 }) => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
@@ -21,7 +23,7 @@ export const download_search_video = async ({
   let url = urlToFetch;
   let currentPage = 1;
   while (url && currentPage <= pageLimit) {
-    console.log(S.FgBlue + `Đang tải trang ${currentPage}: ${url}` + S.Reset);
+    console.log(S.FgBlue + `\nĐang tải trang ${currentPage}: ${url}` + S.Reset);
     await page.goto(url);
     await page.waitForSelector("div.item");
 
@@ -67,7 +69,7 @@ export const download_search_video = async ({
           ...video_items.map((_) => {
             const href = _.querySelector("a").href;
             const key = href.slice(href.lastIndexOf("-") + 1, href.length - 1);
-            const url = `https://pixabay.com/vi/videos/download/video-${key}_source.mp4`; //_.querySelector("div.media").getAttribute("data-mp4");
+            const url = `https://pixabay.com/vi/videos/download/video-${key}_${quality}.mp4`; //_.querySelector("div.media").getAttribute("data-mp4");
             const type = "mp4";
             return { key, type, url };
           })

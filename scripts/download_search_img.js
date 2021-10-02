@@ -1,6 +1,6 @@
 import { promises } from "fs";
 import puppeteer from "puppeteer";
-import { download, createIfNotExistDir } from "./utils.js";
+import { download, createIfNotExistDir, S } from "./utils.js";
 
 export const download_search_img = async ({
   urlToFetch,
@@ -20,7 +20,7 @@ export const download_search_img = async ({
   let url = urlToFetch;
   let currentPage = 1;
   while (url && currentPage <= pageLimit) {
-    console.log(S.FgBlue + `Đang tải trang ${currentPage}: ${url}` + S.Reset);
+    console.log(S.FgBlue + `\nĐang tải trang ${currentPage}: ${url}` + S.Reset);
     await page.goto(url);
     await page.waitForSelector("div.item");
 
@@ -120,7 +120,6 @@ export const download_search_img = async ({
       const nextPageBtn = pagiBtns[pagiBtns.length - 1];
       return nextPageBtn?.href;
     });
-    console.log(url);
     currentPage++;
   }
 

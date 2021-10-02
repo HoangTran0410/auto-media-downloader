@@ -2,7 +2,9 @@
 
 Tool tải ảnh/video tự động trên [pixabay](https://pixabay.com/)
 
-Chỉ cần tìm kiếm như bình thường trên pixabay, rồi copy paste đường link url vào tool là tool sẽ tải hết ảnh/video có trong trang web đó.
+Sử dụng thư viện [puppeteer](https://github.com/puppeteer/puppeteer) trong [Nodejs](https://nodejs.org/en/)
+
+Chỉ cần tìm kiếm như bình thường trên pixabay, rồi copy paste đường link trang web vào tool là tool sẽ tải hết ảnh/video có trong trang web đó (và những trang tiếp theo nếu chọn chức năng tải nhiều trang liên tiếp).
 
 Link ví dụ: https://pixabay.com/vi/videos/search/love/
 
@@ -24,7 +26,7 @@ Các file ảnh/video được tải sẽ được lưu trong thư mục downloa
 
 ## Screenshots
 
-### TRANG CHỦ PIXABAY 
+### TRANG CHỦ PIXABAY
 
 ![pixabay home page](./screenshots/1.png)
 

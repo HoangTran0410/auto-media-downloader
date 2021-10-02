@@ -27,14 +27,14 @@ const choose = async (title, menu_items) => {
   console.log(ui);
 
   while (true) {
-    const input = await prompt("\n> Chon chuc nang: ");
+    const input = await prompt("\n> Chọn chức năng: ");
     if (input in menu_items) {
       return {
         key: input,
         value: menu_items[input],
       };
     } else {
-      console.log("[!] Khong hop le. Vui long chon lai.");
+      console.log("[!] Không hợp lệ. Vui lòng chọn lại.");
     }
   }
 };

@@ -1,5 +1,7 @@
 # AUTO MEDIA DOWNLOADER
 
+Donate? Muốn hỗ trợ mình 1 ly cafe <3 [Donate here](https://github.com/HoangTran0410/HoangTran0410/blob/main/DONATE.md)
+
 Tool tải ảnh/video tự động trên [pixabay](https://pixabay.com/)
 
 Sử dụng thư viện [puppeteer](https://github.com/puppeteer/puppeteer) trong [Nodejs](https://nodejs.org/en/)
